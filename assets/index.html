@@ -1,37 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>My Recipes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Recipe Collection</title>
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <div class="header">
-    <img src="images/recipe (1).jpg">
-    <h1>Recipe App</h1>
-    <form action="/search" method="GET">
-        <input type="text" name="search" placeholder="Search for a recipe">
-        <button type="submit">Search</button>
-    </form>
+    <!-- Header Section -->
+    <header class="main-header">
+        <img src="images/recipe (1).jpg" alt="Recipe Logo" class="logo">
+        <h1>Recipe App</h1>
+        <div class="search-container">
+            <input 
+                type="text" 
+                id="searchInput" 
+                placeholder="Search for a recipe"
+                onkeyup="searchRecipes()"
+            >
+        </div>
+    </header>
+
+    <!-- Featured Section -->
+    <h2 class="section-title">Recipes of the Week</h2>
+
+    <!-- Recipe Grid -->
+    <div class="recipe-grid" id="recipeGrid">
+        <!-- Cheesecake -->
+        <div class="recipe-card" data-recipe="cheesecake cream cheese graham crackers vanilla dessert">
+            <div class="recipe-image">
+                <img src="images/cheese cake.jpeg" alt="Cheese Cake">
+            </div>
+            <div class="recipe-content">
+                <h3>Classic Cheesecake</h3>
+                <div class="recipe-details">
+                    <span>⏰ 45 mins</span>
+                    <span>👨‍🍳 Medium</span>
+                </div>
+                <p>A rich and creamy New York style cheesecake with a buttery graham cracker crust.</p>
+                <div class="recipe-ingredients">
+                    <h4>Key Ingredients:</h4>
+                    <ul>
+                        <li>Cream Cheese</li>
+                        <li>Graham Crackers</li>
+                        <li>Vanilla Extract</li>
+                    </ul>
+                </div>
+                <button class="view-recipe" onclick="location.href='cheesecake.html'">
+                    View Recipe
+                </button>
+            </div>
+        </div>
+
+        <!-- Chocolate Cake -->
+        <div class="recipe-card" data-recipe="chocolate cake cocoa dark chocolate heavy cream dessert">
+            <div class="recipe-image">
+                <img src="images/chocolate cake.jpeg" alt="Chocolate Cake">
+            </div>
+            <div class="recipe-content">
+                <h3>Rich Chocolate Cake</h3>
+                <div class="recipe-details">
+                    <span>⏰ 60 mins</span>
+                    <span>👨‍🍳 Easy</span>
+                </div>
+                <p>Decadent chocolate cake with a smooth, rich chocolate ganache frosting.</p>
+                <div class="recipe-ingredients">
+                    <h4>Key Ingredients:</h4>
+                    <ul>
+                        <li>Dark Chocolate</li>
+                        <li>Cocoa Powder</li>
+                        <li>Heavy Cream</li>
+                    </ul>
+                </div>
+                <button class="view-recipe" onclick="location.href='chocolatecake.html'">
+                    View Recipe
+                </button>
+            </div>
+        </div>
+
+        <!-- Mixed Berries Cake -->
+        <div class="recipe-card" data-recipe="mixed berries cake vanilla buttermilk fruit dessert">
+            <div class="recipe-image">
+                <img src="images/mixed berries cake.jpeg" alt="Mixed Berries Cake">
+            </div>
+            <div class="recipe-content">
+                <h3>Mixed Berry Delight</h3>
+                <div class="recipe-details">
+                    <span>⏰ 55 mins</span>
+                    <span>👨‍🍳 Medium</span>
+                </div>
+                <p>Light and fluffy cake loaded with fresh seasonal berries.</p>
+                <div class="recipe-ingredients">
+                    <h4>Key Ingredients:</h4>
+                    <ul>
+                        <li>Mixed Berries</li>
+                        <li>Vanilla Bean</li>
+                        <li>Buttermilk</li>
+                    </ul>
+                </div>
+                <button class="view-recipe" onclick="location.href='mixedberriescake.html'">
+                    View Recipe
+                </button>
+            </div>
+        </div>
+
+        <!-- Strawberry Cake -->
+        <div class="recipe-card" data-recipe="strawberry cake butter fresh strawberries fruit dessert">
+            <div class="recipe-image">
+                <img src="images/strawberry cake.jpeg" alt="Strawberry Cake">
+            </div>
+            <div class="recipe-content">
+                <h3>Fresh Strawberry Cake</h3>
+                <div class="recipe-details">
+                    <span>⏰ 50 mins</span>
+                    <span>👨‍🍳 Easy</span>
+                </div>
+                <p>Light and moist strawberry cake with fresh strawberry buttercream.</p>
+                <div class="recipe-ingredients">
+                    <h4>Key Ingredients:</h4>
+                    <ul>
+                        <li>Fresh Strawberries</li>
+                        <li>Cake Flour</li>
+                        <li>Butter</li>
+                    </ul>
+                </div>
+                <button class="view-recipe" onclick="location.href='strawberry.html'">
+                    View Recipe
+                </button>
+            </div>
+        </div>
     </div>
-   <div class="h3" >Recipes of the week</div>
-    <div class="container">
-        <div class="box">
-            <img src="images/cheese cake.jpeg" alt="Cheese Cake">
-            <p>Cheese Cake</p>
-            <button onclick="location.href='cheesecake.html '; " >Read More</button>
-        </div>  
-        <div class="box">
-            <img src="images/chocolate cake.jpeg" alt="Chocolate cake">
-            <p>Chocolate Cake</p>
-            <button onclick="location.href='chocolatecake.html';">Read More</button>
-        </div>
-        <div class="box">
-            <img src="images/mixed berries cake.jpeg" alt="mixed berries cake">
-            <p>Mixed Berries Cake</p>
-            <button onclick="location.href='mixedberriescake.html';">Read More</button>
-        </div>
-        <div class="box">
-            <img src="images/strawberry cake.jpeg" alt="Strawberry Cake">
-            <p>Strawberry Cake </p>
-            <button onclick="location.href='strawberry.html';">Read More</button>
-        </div>
+
+    <script>
+        function searchRecipes() {
+            // Get the search input value and convert to lowercase
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            
+            // Get all recipe cards
+            const recipes = document.getElementsByClassName('recipe-card');
+            
+            // Loop through each recipe card
+            Array.from(recipes).forEach(recipe => {
+                // Get the recipe's searchable text from data attribute
+                const recipeText = recipe.getAttribute('data-recipe').toLowerCase();
+                
+                // Check if the recipe text contains the search term
+                if (recipeText.includes(searchTerm)) {
+                    recipe.style.display = 'block'; // Show the recipe
+                } else {
+                    recipe.style.display = 'none';  // Hide the recipe
+                }
+            });
+        }
+
+        // Add animation class when recipes are displayed
+        const recipes = document.getElementsByClassName('recipe-card');
+        Array.from(recipes).forEach(recipe => {
+            recipe.classList.add('fade-in');
+        });
+    </script>
+</body>
+</html>
